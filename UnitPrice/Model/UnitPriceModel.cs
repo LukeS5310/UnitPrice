@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using UnitPrice.Utils;
 
 namespace UnitPrice.Model
 {
@@ -13,7 +14,7 @@ namespace UnitPrice.Model
         public UnitPriceModel(string name)
         {
             Name = name;
-            EmojiName = "🤑";
+            EmojiName = Emoji.GetRandomEmoji();
             Price = 0;
             UnitFraction = 1;
         }

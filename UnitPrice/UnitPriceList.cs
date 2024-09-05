@@ -40,8 +40,8 @@ namespace UnitPrice
 
                 deleteButton.Clicked += async (sender, args) =>
                 {
-                    var answer = await DisplayAlert("Удаление", "Удалить выбранный элемент?", "Нет", "Да");
-                    if (answer) return;
+                    var answer = await DisplayAlert("Удаление", "Удалить выбранный элемент?", "ОК", "Отмена");
+                    if (!answer) return;
 
                     var button = sender as Button;
 
@@ -72,7 +72,7 @@ namespace UnitPrice
                     LongPressCommand = new Command(() =>
                     {
                         Console.WriteLine("BZZ");
-                        HapticFeedback.Perform(HapticFeedbackType.LongPress);
+                       // Vibration.Vibrate(200);
                     })
                 };
 
@@ -118,8 +118,9 @@ namespace UnitPrice
             {
                 Text = "❌",
                 Margin = 5,
-                FontSize = 20,
-                MinimumWidthRequest = 20
+                FontSize = 10,
+                MaximumWidthRequest = 50,
+                MaximumHeightRequest = 50
             };
             return deleteButton;
         }
