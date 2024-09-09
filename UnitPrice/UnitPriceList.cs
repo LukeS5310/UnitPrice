@@ -66,23 +66,12 @@ namespace UnitPrice
                 grid.SetRowSpan(deleteButton, 2);
                 grid.RowSpacing = -25;
 
-                var reorderBehavior = new TouchBehavior()
-                {
-                    LongPressDuration = 500,
-                    LongPressCommand = new Command(() =>
-                    {
-                        Console.WriteLine("BZZ");
-                       // Vibration.Vibrate(200);
-                    })
-                };
-
                 var border = new Border
                 {
                     StrokeShape = new RoundRectangle() { CornerRadius = 15 }, Margin = 5,
                     Content = grid
                 };
-                emojiLabel.Behaviors.Add(reorderBehavior);
-                nameLabel.Behaviors.Add(reorderBehavior); //TODO - expand haptic feedback on all elements of grid properly
+
                 return border;
             });
 
