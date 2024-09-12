@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using UnitPrice.Utils;
 
 namespace UnitPrice.Model
 {
-    internal class UnitPriceModel : INotifyPropertyChanged
+    public class UnitPriceModel : INotifyPropertyChanged
     {
         public UnitPriceModel()
         {
@@ -59,7 +60,7 @@ namespace UnitPrice.Model
         }
 
         
-        public string PriceForOne => (Price/UnitFraction).ToString("C");
+        public string PriceForOne => (Price/UnitFraction).ToString("C", CultureInfo.InvariantCulture);
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)

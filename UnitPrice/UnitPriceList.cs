@@ -1,7 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Maui.Behaviors;
-using Microsoft.Maui.Controls.Shapes;
+﻿using Microsoft.Maui.Controls.Shapes;
 using UnitPrice.Model;
+using UnitPrice.ViewModels;
 
 namespace UnitPrice
 {
@@ -24,8 +23,10 @@ namespace UnitPrice
                 }
             };
 
+
             var upCollection = new CollectionView();
-            var items = new ObservableCollection<UnitPriceModel>();
+            var viewModel = new UnitPriceViewModel();
+            var items = viewModel.UnitPriceCollection;
             upCollection.ItemsSource = items;
             upCollection.CanReorderItems = true;
 
@@ -90,7 +91,7 @@ namespace UnitPrice
             {
                 var name = await DisplayPromptAsync("Добавление", "Введите наименование:", "OK", "Отмена");
                 if (!string.IsNullOrWhiteSpace(name))
-                    items.Add(new UnitPriceModel(name));
+                    viewModel.AddCommand.Execute(name);
             };
 
             layout.Add(upCollection);
