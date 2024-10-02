@@ -46,8 +46,9 @@ namespace UnitPrice
 
                     var button = sender as Button;
 
-                    if (button.BindingContext is UnitPriceModel obj)
-                        items.Remove(obj);
+                    if (button.BindingContext is not UnitPriceModel obj) return;
+                    items.Remove(obj);
+                    viewModel.DeleteCommand.Execute(obj);
                 };
 
                 var grid = new Grid() { BackgroundColor = Color.Parse("LightBlue") };

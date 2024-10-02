@@ -1,20 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using LiteDB;
 using UnitPrice.Utils;
 
 namespace UnitPrice.Model
 {
     public class UnitPriceModel : INotifyPropertyChanged
     {
-        public UnitPriceModel()
-        {
-            
-        }
-
         public UnitPriceModel(string name)
         {
             Name = name;
+            Id = Guid.NewGuid().ToString();
             EmojiName = Emoji.GetRandomEmoji();
             Price = 0;
             UnitFraction = 1;
@@ -31,6 +28,9 @@ namespace UnitPrice.Model
             }
         }
         public string? EmojiName { get; set; }
+
+        [BsonId]
+        public string Id { get; }
         
         private decimal _price;
 
