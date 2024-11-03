@@ -8,6 +8,11 @@ namespace UnitPrice.Model
 {
     public class UnitPriceModel : INotifyPropertyChanged
     {
+        public UnitPriceModel(string id, string name)
+        {
+            Name = name;
+            Id = id;
+        }
         public UnitPriceModel(string name)
         {
             Name = name;
@@ -60,7 +65,7 @@ namespace UnitPrice.Model
         }
 
         
-        public string PriceForOne => (Price/UnitFraction).ToString("C", CultureInfo.InvariantCulture);
+        public string PriceForOne => (Price/UnitFraction).ToString("C", CultureInfo.GetCultureInfo("ru-RU"));
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)

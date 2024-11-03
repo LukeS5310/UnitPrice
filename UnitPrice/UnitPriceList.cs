@@ -51,7 +51,7 @@ namespace UnitPrice
                     viewModel.DeleteCommand.Execute(obj);
                 };
 
-                var grid = new Grid() { BackgroundColor = Color.Parse("LightBlue") };
+                var grid = new Grid() { BackgroundColor = Color.Parse("#000080") };
                 grid.Add(emojiLabel, 0);
                 grid.SetRowSpan(emojiLabel, 2);
                 grid.Add(nameLabel, 1);
