@@ -1,19 +1,23 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using LiteDB;
+using UnitPrice.Utils;
 
 namespace UnitPrice.Model
 {
-    internal class UnitPriceModel : INotifyPropertyChanged
+    public class UnitPriceModel : INotifyPropertyChanged
     {
-        public UnitPriceModel()
+        public UnitPriceModel(string id, string name)
         {
-            
+            Name = name;
+            Id = id;
         }
-
         public UnitPriceModel(string name)
         {
             Name = name;
-            EmojiName = "🤑";
+            Id = Guid.NewGuid().ToString();
+            EmojiName = Emoji.GetRandomEmoji();
             Price = 0;
             UnitFraction = 1;
         }
@@ -29,6 +33,9 @@ namespace UnitPrice.Model
             }
         }
         public string? EmojiName { get; set; }
+
+        [BsonId]
+        public string Id { get; }
         
         private decimal _price;
 
@@ -58,7 +65,7 @@ namespace UnitPrice.Model
         }
 
         
-        public string PriceForOne => (Price/UnitFraction).ToString("C");
+        public string PriceForOne => (Price/UnitFraction).ToString("C", CultureInfo.GetCultureInfo("ru-RU"));
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
